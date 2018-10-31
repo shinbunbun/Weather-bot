@@ -1,6 +1,8 @@
 var access_token = "さっき発行したとーくん";
 function doPost(e) {
   var events = JSON.parse(e.postData.contents).events;
+  events.forEach(function(event) {
+    switch (event.type) {
       case "message":
         reply(event);
         break;
@@ -317,19 +319,22 @@ function reply (e) {
     };
   }
   
-  var replyData = {
-    "method" : "post",
-    "headers" : {
-      "Content-Type" : "application/json",
-      "Authorization" : "Bearer " + access_token
-    },
-    "payload" : JSON.stringify(message)
-  };
-  try{
-    UrlFetchApp.fetch("https://api.line.me/v2/bot/message/reply", replyData);
-  }catch(e){
-    console.log('エラー：' + e)
+  if (message != undefined) {
+    var replyData = {
+      "method" : "post",
+      "headers" : {
+        "Content-Type" : "application/json",
+        "Authorization" : "Bearer " + access_token
+      },
+      "payload" : JSON.stringify(message)
+    };
+    try{
+      UrlFetchApp.fetch("https://api.line.me/v2/bot/message/reply", replyData);
+    }catch(e){
+      
+    }
   }
+  
 }
 
 function getWeather (e){
