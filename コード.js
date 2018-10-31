@@ -339,7 +339,8 @@ function reply (e) {
 
 function getWeather (e){
   try {
-    const url = 'http://api.openweathermap.org/data/2.5/forecast' + '?zip=' + e + ',jp&APPID=さっき発行したとーくん';
+    var apiKey = 'さっき発行したえーぴーあいきー';
+    var url = 'http://api.openweathermap.org/data/2.5/forecast' + '?zip=' + e + ',jp&APPID=' + apiKey;
     var response = UrlFetchApp.fetch(url);
     return JSON.parse(response);
     Logger.log(response.list[0])
