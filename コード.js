@@ -1,11 +1,11 @@
 var access_token = "さっき発行したとーくん";
-//postが飛んでくるとdoPost関数が呼び出されます
 function doPost(e) {
-  //飛んできたjsonをパースして、eventオブジェクトを取り出します
+  //postが飛んでくるとdoPost関数が呼び出されます
   var events = JSON.parse(e.postData.contents).events;
+  //飛んできたjsonをパースして、eventオブジェクトを取り出します
   events.forEach(function(event) {
-    //イベントタイプによって関数を分けます
     switch (event.type) {
+    //イベントタイプによって関数を分けます
       case "message":
         reply(event);
         break;
