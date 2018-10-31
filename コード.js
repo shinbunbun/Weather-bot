@@ -319,21 +319,15 @@ function reply (e) {
     };
   }
   
-  if (message != undefined) {
-    var replyData = {
-      "method" : "post",
-      "headers" : {
-        "Content-Type" : "application/json",
-        "Authorization" : "Bearer " + access_token
-      },
-      "payload" : JSON.stringify(message)
-    };
-    try{
-      UrlFetchApp.fetch("https://api.line.me/v2/bot/message/reply", replyData);
-    }catch(e){
-      
-    }
-  }
+  var replyData = {
+    "method" : "post",
+    "headers" : {
+      "Content-Type" : "application/json",
+      "Authorization" : "Bearer " + access_token
+    },
+    "payload" : JSON.stringify(message)
+  };
+  UrlFetchApp.fetch("https://api.line.me/v2/bot/message/reply", replyData);
   
 }
 
