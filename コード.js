@@ -1,28 +1,29 @@
-var access_token = "さっき発行したとーくん";
+const access_token = "さっき発行したとーくん";
 function doPost(e) {
-  var events = JSON.parse(e.postData.contents).events;
+  const events = JSON.parse(e.postData.contents).events;
   events.forEach(function(event) {
     switch (event.type) {
       case "message":
         reply(event);
         break;
-      default :
-        ;
-        break;
+      /*case "postback" :
+        postback(event);
+        break;*/
     }
   });
 }
 
 function reply (e) {
-  var userMessage = e.message.text;
-  var response = getWeather(userMessage);
+  const userMessage = e.message.text;
+  const response = getWeather(userMessage);
   if (response != "error") {
-    var country = response.city.country,
-        cityName = response.city.name;
-    var date = [],
+    const country = response.city.country;
+    const cityName = response.city.name;
+    let date = [],
         weather = [],
         icon = [],
         temple = [];
+    let message;
     for(var i=0;i<=8;i++){
       if (Number(response.list[i].dt_txt.slice(11, 13)) + 9 > 24) {
         date.push(Number(response.list[i].dt_txt.slice(11, 13)) + 9 - 24);
@@ -33,7 +34,7 @@ function reply (e) {
       icon.push(response.list[i].weather[0].icon);
       temple.push(Number(response.list[i].main.temp) - 273.15)
     }
-    var message = {
+    message = {
       "replyToken" : e.replyToken,
       "messages": [{
         "type": "flex",
@@ -310,7 +311,7 @@ function reply (e) {
       }]
     };
   } else {
-    var message = {
+    message = {
       "replyToken" : e.replyToken,
       "messages" : [{
         "type" : "text",
@@ -319,7 +320,7 @@ function reply (e) {
     };
   }
   
-  var replyData = {
+  const replyData = {
     "method" : "post",
     "headers" : {
       "Content-Type" : "application/json",
@@ -333,12 +334,13 @@ function reply (e) {
 
 function getWeather (e){
   try {
-    var apiKey = 'さっき発行したえーぴーあいきー';
-    var url = 'http://api.openweathermap.org/data/2.5/forecast' + '?zip=' + e + ',jp&APPID=' + apiKey;
-    var response = UrlFetchApp.fetch(url);
+    const apiKey = 'さっき発行したえーぴーあいきー';
+    const url = 'http://api.openweathermap.org/data/2.5/forecast' + '?zip=' + e + ',jp&APPID=' + apiKey;
+    const response = UrlFetchApp.fetch(url);
     return JSON.parse(response);
-    Logger.log(response.list[0])
+    console.log(response.list[0])
   } catch (e) {
+    console.log(e);
     return "error";
   }
 }
