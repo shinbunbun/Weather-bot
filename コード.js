@@ -96,6 +96,13 @@ function reply(e) {
                                                 "type": "icon",
                                                 "url": `https://openweathermap.org/img/w/${icon[0]}.png`,
                                                 "size": "xl"
+                                            },
+                                            {
+                                                "type": "text",
+                                                "text": temperature[0],
+                                                "size": "sm",
+                                                "color": "#111111",
+                                                "align": "end"
                                             }
                                         ]
                                     },
@@ -122,6 +129,14 @@ function reply(e) {
                                                 "url": `https://openweathermap.org/img/w/${icon[1]}.png`,
                                                 "size": "xl"
                                             }
+                                            ,
+                                            {
+                                                "type": "text",
+                                                "text": temperature[1],
+                                                "size": "sm",
+                                                "color": "#111111",
+                                                "align": "end"
+                                            }
                                         ]
                                     },
                                     {
@@ -146,6 +161,13 @@ function reply(e) {
                                                 "type": "icon",
                                                 "url": `https://openweathermap.org/img/w/${icon[2]}.png`,
                                                 "size": "xl"
+                                            },
+                                            {
+                                                "type": "text",
+                                                "text": temperature[2],
+                                                "size": "sm",
+                                                "color": "#111111",
+                                                "align": "end"
                                             }
                                         ]
                                     },
@@ -171,6 +193,13 @@ function reply(e) {
                                                 "type": "icon",
                                                 "url": `https://openweathermap.org/img/w/${icon[3]}.png`,
                                                 "size": "xl"
+                                            },
+                                            {
+                                                "type": "text",
+                                                "text": temperature[3],
+                                                "size": "sm",
+                                                "color": "#111111",
+                                                "align": "end"
                                             }
                                         ]
                                     },
@@ -196,6 +225,13 @@ function reply(e) {
                                                 "type": "icon",
                                                 "url": `https://openweathermap.org/img/w/${icon[4]}.png`,
                                                 "size": "xl"
+                                            },
+                                            {
+                                                "type": "text",
+                                                "text": temperature[4],
+                                                "size": "sm",
+                                                "color": "#111111",
+                                                "align": "end"
                                             }
                                         ]
                                     },
@@ -221,6 +257,13 @@ function reply(e) {
                                                 "type": "icon",
                                                 "url": `https://openweathermap.org/img/w/${icon[5]}.png`,
                                                 "size": "xl"
+                                            },
+                                            {
+                                                "type": "text",
+                                                "text": temperature[5],
+                                                "size": "sm",
+                                                "color": "#111111",
+                                                "align": "end"
                                             }
                                         ]
                                     },
@@ -246,6 +289,13 @@ function reply(e) {
                                                 "type": "icon",
                                                 "url": `https://openweathermap.org/img/w/${icon[6]}.png`,
                                                 "size": "xl"
+                                            },
+                                            {
+                                                "type": "text",
+                                                "text": temperature[6],
+                                                "size": "sm",
+                                                "color": "#111111",
+                                                "align": "end"
                                             }
                                         ]
                                     },
@@ -271,6 +321,13 @@ function reply(e) {
                                                 "type": "icon",
                                                 "url": `https://openweathermap.org/img/w/"${icon[7]}.png`,
                                                 "size": "xl"
+                                            },
+                                            {
+                                                "type": "text",
+                                                "text": temperature[7],
+                                                "size": "sm",
+                                                "color": "#111111",
+                                                "align": "end"
                                             }
                                         ]
                                     },
@@ -296,6 +353,13 @@ function reply(e) {
                                                 "type": "icon",
                                                 "url": `https://openweathermap.org/img/w/${icon[8]}.png`,
                                                 "size": "xl"
+                                            },
+                                            {
+                                                "type": "text",
+                                                "text": temperature[8],
+                                                "size": "sm",
+                                                "color": "#111111",
+                                                "align": "end"
                                             }
                                         ]
                                     }
