@@ -1,40 +1,41 @@
-const access_token = "さっき発行したとーくん";
+var access_token = "さっき発行したとーくん";
 function doPost(e) {
-    const events = JSON.parse(e.postData.contents).events;
+    var events = JSON.parse(e.postData.contents).events;
     events.forEach(function (event) {
         switch (event.type) {
             case "message":
                 reply(event);
                 break;
+            //postbackイベントの時はここに入る
             /*case "postback" :
-              postback(event);
-              break;*/
+                postback(event);
+                break;*/
         }
     });
 }
 
 function reply(e) {
-    const userMessage = e.message.text;
-    const response = getWeather(userMessage);
+    var userMessage = e.message.text;
+    var response = getWeather(userMessage);
     if (response != "error") {
-        const country = response.city.country;
-        const cityName = response.city.name;
-        let date = [],
+        var country = response.city.country,
+            cityName = response.city.name;
+        var date = [],
             weather = [],
             icon = [],
-            temple = [];
-        let message;
+            temperature = [];
         for (var i = 0; i <= 8; i++) {
             if (Number(response.list[i].dt_txt.slice(11, 13)) + 9 > 24) {
                 date.push(Number(response.list[i].dt_txt.slice(11, 13)) + 9 - 24);
-            } else {
+            }
+            else {
                 date.push(Number(response.list[i].dt_txt.slice(11, 13)) + 9);
             }
             weather.push(response.list[i].weather[0].main);
             icon.push(response.list[i].weather[0].icon);
-            temple.push(Number(response.list[i].main.temp) - 273.15)
+            temperature.push((Math.round((Number(response.list[i].main.temp) - 273.15) * 10) / 10).toString() + '℃');
         }
-        message = {
+        var message = {
             "replyToken": e.replyToken,
             "messages": [{
                 "type": "flex",
@@ -59,7 +60,7 @@ function reply(e) {
                             },
                             {
                                 "type": "text",
-                                "text": `${country}.${cityName}`,
+                                "text": country + '.' + cityName,
                                 "size": "md",
                                 "color": "#aaaaaa",
                                 "wrap": true
@@ -80,7 +81,7 @@ function reply(e) {
                                         "contents": [
                                             {
                                                 "type": "text",
-                                                "text": `${date[0]}:00`,
+                                                "text": date[0] + ":00",
                                                 "size": "sm",
                                                 "color": "#555555",
                                                 "flex": 0
@@ -94,7 +95,7 @@ function reply(e) {
                                             },
                                             {
                                                 "type": "icon",
-                                                "url": `https://openweathermap.org/img/w/${icon[0]}.png`,
+                                                "url": "https://openweathermap.org/img/w/" + icon[0] + ".png",
                                                 "size": "xl"
                                             },
                                             {
@@ -112,7 +113,7 @@ function reply(e) {
                                         "contents": [
                                             {
                                                 "type": "text",
-                                                "text": `${date[1]}:00`,
+                                                "text": date[1] + ":00",
                                                 "size": "sm",
                                                 "color": "#555555",
                                                 "flex": 0
@@ -126,10 +127,9 @@ function reply(e) {
                                             },
                                             {
                                                 "type": "icon",
-                                                "url": `https://openweathermap.org/img/w/${icon[1]}.png`,
+                                                "url": "https://openweathermap.org/img/w/" + icon[1] + ".png",
                                                 "size": "xl"
-                                            }
-                                            ,
+                                            },
                                             {
                                                 "type": "text",
                                                 "text": temperature[1],
@@ -145,7 +145,7 @@ function reply(e) {
                                         "contents": [
                                             {
                                                 "type": "text",
-                                                "text": `${date[2]}:00`,
+                                                "text": date[2] + ":00",
                                                 "size": "sm",
                                                 "color": "#555555",
                                                 "flex": 0
@@ -159,7 +159,7 @@ function reply(e) {
                                             },
                                             {
                                                 "type": "icon",
-                                                "url": `https://openweathermap.org/img/w/${icon[2]}.png`,
+                                                "url": "https://openweathermap.org/img/w/" + icon[2] + ".png",
                                                 "size": "xl"
                                             },
                                             {
@@ -177,7 +177,7 @@ function reply(e) {
                                         "contents": [
                                             {
                                                 "type": "text",
-                                                "text": `${date[3]}:00`,
+                                                "text": date[3] + ":00",
                                                 "size": "sm",
                                                 "color": "#555555",
                                                 "flex": 0
@@ -191,7 +191,7 @@ function reply(e) {
                                             },
                                             {
                                                 "type": "icon",
-                                                "url": `https://openweathermap.org/img/w/${icon[3]}.png`,
+                                                "url": "https://openweathermap.org/img/w/" + icon[3] + ".png",
                                                 "size": "xl"
                                             },
                                             {
@@ -209,7 +209,7 @@ function reply(e) {
                                         "contents": [
                                             {
                                                 "type": "text",
-                                                "text": `${date[4]}:00`,
+                                                "text": date[4] + ":00",
                                                 "size": "sm",
                                                 "color": "#555555",
                                                 "flex": 0
@@ -223,7 +223,7 @@ function reply(e) {
                                             },
                                             {
                                                 "type": "icon",
-                                                "url": `https://openweathermap.org/img/w/${icon[4]}.png`,
+                                                "url": "https://openweathermap.org/img/w/" + icon[4] + ".png",
                                                 "size": "xl"
                                             },
                                             {
@@ -241,7 +241,7 @@ function reply(e) {
                                         "contents": [
                                             {
                                                 "type": "text",
-                                                "text": `${date[5]}:00`,
+                                                "text": date[5] + ":00",
                                                 "size": "sm",
                                                 "color": "#555555",
                                                 "flex": 0
@@ -255,7 +255,7 @@ function reply(e) {
                                             },
                                             {
                                                 "type": "icon",
-                                                "url": `https://openweathermap.org/img/w/${icon[5]}.png`,
+                                                "url": "https://openweathermap.org/img/w/" + icon[5] + ".png",
                                                 "size": "xl"
                                             },
                                             {
@@ -287,7 +287,7 @@ function reply(e) {
                                             },
                                             {
                                                 "type": "icon",
-                                                "url": `https://openweathermap.org/img/w/${icon[6]}.png`,
+                                                "url": "https://openweathermap.org/img/w/" + icon[6] + ".png",
                                                 "size": "xl"
                                             },
                                             {
@@ -305,7 +305,7 @@ function reply(e) {
                                         "contents": [
                                             {
                                                 "type": "text",
-                                                "text": `${date[7]}:00`,
+                                                "text": date[7] + ":00",
                                                 "size": "sm",
                                                 "color": "#555555",
                                                 "flex": 0
@@ -319,7 +319,7 @@ function reply(e) {
                                             },
                                             {
                                                 "type": "icon",
-                                                "url": `https://openweathermap.org/img/w/"${icon[7]}.png`,
+                                                "url": "https://openweathermap.org/img/w/" + icon[7] + ".png",
                                                 "size": "xl"
                                             },
                                             {
@@ -337,7 +337,7 @@ function reply(e) {
                                         "contents": [
                                             {
                                                 "type": "text",
-                                                "text": `${date[8]}:00`,
+                                                "text": date[8] + ":00",
                                                 "size": "sm",
                                                 "color": "#555555",
                                                 "flex": 0
@@ -351,7 +351,7 @@ function reply(e) {
                                             },
                                             {
                                                 "type": "icon",
-                                                "url": `https://openweathermap.org/img/w/${icon[8]}.png`,
+                                                "url": "https://openweathermap.org/img/w/" + icon[8] + ".png",
                                                 "size": "xl"
                                             },
                                             {
@@ -375,7 +375,7 @@ function reply(e) {
             }]
         };
     } else {
-        message = {
+        var message = {
             "replyToken": e.replyToken,
             "messages": [{
                 "type": "text",
@@ -383,8 +383,7 @@ function reply(e) {
             }]
         };
     }
-
-    const replyData = {
+    var replyData = {
         "method": "post",
         "headers": {
             "Content-Type": "application/json",
@@ -392,19 +391,21 @@ function reply(e) {
         },
         "payload": JSON.stringify(message)
     };
-    UrlFetchApp.fetch("https://api.line.me/v2/bot/message/reply", replyData);
+    try {
+        UrlFetchApp.fetch("https://api.line.me/v2/bot/message/reply", replyData);
+    } catch (e) {
 
+    }
 }
 
 function getWeather(e) {
     try {
-        const apiKey = 'さっき発行したえーぴーあいきー';
-        const url = `http://api.openweathermap.org/data/2.5/forecast?zip=${e},jp&APPID=${apiKey}`;
-        const response = UrlFetchApp.fetch(url);
+        var apiKey = 'さっき発行したえーぴーあいきー';
+        var url = 'http://api.openweathermap.org/data/2.5/forecast' + '?zip=' + e + ',jp&APPID=' + apiKey;
+        var response = UrlFetchApp.fetch(url);
         return JSON.parse(response);
-        console.log(response.list[0])
+        Logger.log(response.list[0])
     } catch (e) {
-        console.log(e);
         return "error";
     }
 }
